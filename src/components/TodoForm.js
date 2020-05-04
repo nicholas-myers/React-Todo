@@ -2,17 +2,10 @@ import React from "react";
 
 
 class TodoForm extends React.Component {
-    constructor() {
-    super();
-    // console.log(props)
-}
-
-
-
 
     render() {
         return (
-            <form onSubmit={this.submitTodo}>
+            <form onSubmit={this.props.submitTodo}>
                 <input 
                 name="todoInput"
                 onChange={this.props.captureTodo}
