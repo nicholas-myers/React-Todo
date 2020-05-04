@@ -16,7 +16,7 @@ captureTodo =(event)=> {
     })
 }
 
-submitTodo =(event)=> {
+submitTodo = (event) => {
     event.preventDefault();
     this.props.addTodo(this.state.todoInput)
     this.setState({
@@ -34,6 +34,7 @@ submitTodo =(event)=> {
                 type="text"
                 />
                 <button>Submit</button>
+                <button>Clear Completed</button>
             </form>
         )
     }
