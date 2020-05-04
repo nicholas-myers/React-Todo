@@ -4,7 +4,7 @@ class Todo extends React.Component {
 
   render() {
     return (
-      <div className="Todo">
+      <div className={`todo${this.props.item ? ' completed' : ""}`}>
         <p>{this.props.task}</p>
       </div>
     );

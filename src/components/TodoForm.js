@@ -6,6 +6,7 @@ class TodoForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.props.submitTodo}>
+                <label>Input New Task:</label>
                 <input 
                 name="todoInput"
                 onChange={this.props.captureTodo}
