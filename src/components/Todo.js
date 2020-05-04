@@ -1,14 +1,14 @@
 import React from "react";
 
 class Todo extends React.Component {
-    constructor(props) {
+    constructor() {
         super();
         // console.log(props)
     }
 
     render() {
         return(
-        <div className="Todo">{this.props.task}</div>
+        <div className="Todo"><p>{this.props.task}</p></div>
         )
     }
 }

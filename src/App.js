@@ -1,7 +1,7 @@
 import React from "react";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
-import Todo from "./components/Todo";
+
 
 const todoArray = [
   {
@@ -27,9 +27,9 @@ class App extends React.Component {
       task: inputtedTodo,
       id: Date.now(),
       completed: false,
-    }
+    };
     this.setState({
-      todoArray: [...todoArray, newTodo]
+      todoArray: [...this.state.todoArray, newTodo]
     })
   }
 
