@@ -19,9 +19,22 @@ class App extends React.Component {
     super();
     this.state = {
       todoArray,
+      todoInput: "",
     };
   }
+  captureTodo =(event)=> {
+    this.setState({
+        [event.target.name]: event.target.value,
+    })
+}
+submitTodo = (event) => {
+  event.preventDefault();
+  this.props.addTodo(this.state.todoInput)
+  this.setState({
+      todoInput: "",
+  })
 
+}
   addTodo = (inputtedTodo) => {
     const newTodo = {
       task: inputtedTodo,
@@ -37,7 +50,7 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addTodo={this.addTodo} />
+        <TodoForm captureTodo={this.captureTodo} addTodo={this.addTodo} todoInput={this.state.todoInput} submitTodo={this.submitTodo}/>
         <TodoList todoArray={this.state.todoArray} />
       </div>
     );
