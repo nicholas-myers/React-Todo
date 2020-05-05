@@ -31,10 +31,13 @@ class App extends React.Component {
 
   submitTodo = (event) => {
     event.preventDefault();
-    this.addTodo(this.state.todoInput);
-    this.setState({
-      todoInput: "",
-    });
+    if (this.state.todoInput !== "") {
+      this.addTodo(this.state.todoInput);
+      this.setState({
+        todoInput: "",
+      });
+    }   
+    
   };
 
   addTodo = (inputtedTodo) => {
@@ -82,7 +85,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h2>Welcome to your Todo App!</h2>
         <TodoForm
           captureTodo={this.captureTodo}

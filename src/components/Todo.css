@@ -1,12 +1,27 @@
+* {
+    /* border: 1px solid black; */
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
 button {
     margin: 3%;
     padding: 1rem;
 }
 
+.todoListContainer {
+    width: 25%;
+}
+
 .todo {
     border: 1px solid black;
     padding: 1rem;
-    width: 20%;
     margin: 3% 0;
     text-align: center;
 }
