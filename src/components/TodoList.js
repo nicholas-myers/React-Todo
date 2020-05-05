@@ -8,9 +8,10 @@ class TodoList extends React.Component {
     render() {
         return (
             <div className="TodoListContainer">
+                <h2>TASKS</h2>
                 {this.props.todoArray.map(item => {
                    return ( 
-                   <Todo key={item.id} task={item.task} id={item.id} completed={item.completed} />
+                   <Todo onCi={this.props.toggleCompleted} key={item.id} task={item.task} id={item.id} completed={item.completed} index={item} />
                    )
                 })}
                 

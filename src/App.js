@@ -1,8 +1,7 @@
 import React from "react";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
-import "./components/Todo.css"
-
+import "./components/Todo.css";
 
 const todoArray = [
   {
@@ -21,20 +20,23 @@ class App extends React.Component {
     this.state = {
       todoArray,
       todoInput: "",
+
     };
   }
-  captureTodo =(event)=> {
+
+  captureTodo = (event) => {
     this.setState({
-        [event.target.name]: event.target.value,
-    })
-}
-submitTodo = (event) => {
-  event.preventDefault();
-  this.addTodo(this.state.todoInput);
-  this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  submitTodo = (event) => {
+    event.preventDefault();
+    this.addTodo(this.state.todoInput);
+    this.setState({
       todoInput: "",
-  })
-}
+    });
+  };
 
   addTodo = (inputtedTodo) => {
     const newTodo = {
@@ -43,16 +45,29 @@ submitTodo = (event) => {
       completed: false,
     };
     this.setState({
-      todoArray: [...this.state.todoArray, newTodo]
-    })
-  }
+      todoArray: [...this.state.todoArray, newTodo],
+    });
+  };
+
+toggleCompleted = index => {
+  // this.setState({
+  //   ...todoArray[index],
+  //   completed: !todoArray[index].completed,
+  // })
+  console.log(todoArray[index])
+}
 
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm captureTodo={this.captureTodo} addTodo={this.addTodo} todoInput={this.state.todoInput} submitTodo={this.submitTodo}/>
-        <TodoList todoArray={this.state.todoArray} />
+        <TodoForm
+          captureTodo={this.captureTodo}
+          addTodo={this.addTodo}
+          todoInput={this.state.todoInput}
+          submitTodo={this.submitTodo}
+        />
+        <TodoList todoArray={this.state.todoArray} toggleCompleted={this.toggleCompleted} />
       </div>
     );
   }
