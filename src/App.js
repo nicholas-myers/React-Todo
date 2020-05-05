@@ -20,7 +20,6 @@ class App extends React.Component {
     this.state = {
       todoArray,
       todoInput: "",
-
     };
   }
 
@@ -49,13 +48,27 @@ class App extends React.Component {
     });
   };
 
-toggleCompleted = index => {
-  // this.setState({
-  //   ...todoArray[index],
-  //   completed: !todoArray[index].completed,
-  // })
-  console.log(todoArray[index])
-}
+  toggleCompleted = (clickedId) => {
+    const newTaskList = this.state.todoArray.map((item) => {
+      // loop and find what I click
+      // then toggle
+
+      if (item.id === clickedId) {
+        //toggle completed
+        return {
+          //dont mutate - create a new one
+          ...item,
+          completed: !item.completed,
+        };
+      } else {
+        return item;
+      }
+    });
+
+    this.setState({
+      todoArray: newTaskList
+    });
+  };
 
   render() {
     return (
@@ -67,7 +80,10 @@ toggleCompleted = index => {
           todoInput={this.state.todoInput}
           submitTodo={this.submitTodo}
         />
-        <TodoList todoArray={this.state.todoArray} toggleCompleted={this.toggleCompleted} />
+        <TodoList
+          todoArray={this.state.todoArray}
+          toggleCompleted={this.toggleCompleted}
+        />
       </div>
     );
   }
