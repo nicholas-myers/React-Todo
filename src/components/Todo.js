@@ -3,7 +3,7 @@ import React from "react";
 class Todo extends React.Component {
 
   render() {
-    console.log(this.props.id);
+    // console.log(this.props.id);
     return (
       <div
       onClick={ () => this.props.toggleCompleted(this.props.id)}

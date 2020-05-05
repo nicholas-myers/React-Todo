@@ -54,9 +54,7 @@ class App extends React.Component {
       // then toggle
 
       if (item.id === clickedId) {
-        //toggle completed
         return {
-          //dont mutate - create a new one
           ...item,
           completed: !item.completed,
         };
@@ -70,6 +68,18 @@ class App extends React.Component {
     });
   };
 
+  clearCompleted = (event) => {
+    event.preventDefault()
+    const clearCompletedTasks = this.state.todoArray.filter(item => {
+      if (item.completed === false) {
+        return item
+      }
+    })
+    this.setState({
+      todoArray: clearCompletedTasks
+    })
+  }
+
   render() {
     return (
       <div>
@@ -79,6 +89,7 @@ class App extends React.Component {
           addTodo={this.addTodo}
           todoInput={this.state.todoInput}
           submitTodo={this.submitTodo}
+          clearCompleted={this.clearCompleted}
         />
         <TodoList
           todoArray={this.state.todoArray}
