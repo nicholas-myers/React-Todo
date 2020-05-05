@@ -86,7 +86,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <h2>Welcome to your Todo App!</h2>
+        <h1>TASK MASTER</h1>
         <TodoForm
           captureTodo={this.captureTodo}
           addTodo={this.addTodo}
