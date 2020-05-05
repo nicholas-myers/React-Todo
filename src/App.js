@@ -1,13 +1,103 @@
-import React from 'react';
+import React from "react";
+import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
+import "./components/Todo.css";
+
+const todoArray = [
+  {
+    task: "example task",
+    id: Date.now(),
+    completed: false,
+  },
+];
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
+  constructor() {
+    super();
+    this.state = {
+      todoArray,
+      todoInput: "",
+    };
+  }
+
+  captureTodo = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  submitTodo = (event) => {
+    event.preventDefault();
+    if (this.state.todoInput !== "") {
+      this.addTodo(this.state.todoInput);
+      this.setState({
+        todoInput: "",
+      });
+    }   
+    
+  };
+
+  addTodo = (inputtedTodo) => {
+    const newTodo = {
+      task: inputtedTodo,
+      id: Date.now(),
+      completed: false,
+    };
+    this.setState({
+      todoArray: [...this.state.todoArray, newTodo],
+    });
+  };
+
+  toggleCompleted = (clickedId) => {
+    const newTaskList = this.state.todoArray.map((item) => {
+      // loop and find what I click
+      // then toggle
+
+      if (item.id === clickedId) {
+        return {
+          ...item,
+          completed: !item.completed,
+        };
+      } else {
+        return item;
+      }
+    });
+
+    this.setState({
+      todoArray: newTaskList
+    });
+  };
+
+  clearCompleted = (event) => {
+    event.preventDefault()
+    const clearCompletedTasks = this.state.todoArray.filter(item => {
+      if (item.completed === false) {
+        return item
+      }
+    })
+    this.setState({
+      todoArray: clearCompletedTasks
+    })
+  }
+
   render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
+      <div className="container">
+        <h1>TASK MASTER</h1>
+        <TodoForm
+          captureTodo={this.captureTodo}
+          addTodo={this.addTodo}
+          todoInput={this.state.todoInput}
+          submitTodo={this.submitTodo}
+          clearCompleted={this.clearCompleted}
+        />
+        <TodoList
+          todoArray={this.state.todoArray}
+          toggleCompleted={this.toggleCompleted}
+        />
       </div>
     );
   }
